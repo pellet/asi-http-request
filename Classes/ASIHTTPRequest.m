@@ -1360,7 +1360,7 @@ static NSOperationQueue *sharedQueue = nil;
 		// If we are retrying this request, it will already have a requestID
 		if (![self requestID]) {
 			nextRequestID++;
-			[self setRequestID:[NSNumber numberWithUnsignedInt:nextRequestID]];
+			[self setRequestID:[NSNumber numberWithUnsignedInteger:nextRequestID]];
 		}
 		[[self connectionInfo] setObject:[self requestID] forKey:@"request"];		
 		[[self connectionInfo] setObject:[self readStream] forKey:@"stream"];
