@@ -1218,11 +1218,12 @@ static NSOperationQueue *sharedQueue = nil;
         if (![self validatesSecureCertificate]) {
             // see: http://iphonedevelopment.blogspot.com/2010/05/nsstream-tcp-and-ssl.html
             
+            NSString *peerName = [[self url] host];
             NSDictionary *sslProperties = [[NSDictionary alloc] initWithObjectsAndKeys:
                                       [NSNumber numberWithBool:YES], kCFStreamSSLAllowsExpiredCertificates,
                                       [NSNumber numberWithBool:YES], kCFStreamSSLAllowsAnyRoot,
                                       [NSNumber numberWithBool:NO],  kCFStreamSSLValidatesCertificateChain,
-                                      kCFNull,kCFStreamSSLPeerName,
+                                      (peerName ? (id)peerName : (id)kCFNull),kCFStreamSSLPeerName,
                                       nil];
             
             CFReadStreamSetProperty((CFReadStreamRef)[self readStream], 
